@@ -7,8 +7,7 @@ import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
-import javax.persistence.Entity;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.Instant;
 
@@ -22,10 +21,21 @@ import java.time.Instant;
 @SequenceGenerator(name="base_entity_gen", allocationSize = 1, sequenceName = "order_entity_seq")
 public class OrderEntity extends BaseEntity {
 
+    @Column(name = "order_id")
     private Long orderId;
-    private Long merchantId;
-    private Long shopperId;
+
+    @ManyToOne
+    @JoinColumn(name = "merchant_id")
+    private MerchantEntity merchant;
+
+    @ManyToOne
+    @JoinColumn(name = "shopper_id")
+    private ShopperEntity shopper;
+
+    @Column(name = "amount")
     private BigDecimal amount;
+
+    @Column(name = "completed_at")
     private Instant completedAt;
 
 

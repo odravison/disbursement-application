@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.SequenceGenerator;
 
@@ -19,5 +20,7 @@ import javax.persistence.SequenceGenerator;
 @Where(clause = BaseEntity.WHERE_DELETED_CLAUSE)
 @SequenceGenerator(name="base_entity_gen", allocationSize = 1, sequenceName = "shopper_seq")
 public class ShopperEntity extends UserEntity {
+
+    @Column(name = "nif")
     private String nif;
 }

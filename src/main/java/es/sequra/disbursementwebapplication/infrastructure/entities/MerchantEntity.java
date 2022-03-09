@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.SequenceGenerator;
 
@@ -20,6 +21,7 @@ import javax.persistence.SequenceGenerator;
 @SequenceGenerator(name="base_entity_gen", allocationSize = 1, sequenceName = "merchant_seq")
 public class MerchantEntity extends UserEntity {
 
+    @Column(name = "cif")
     private String cif;
 
 }

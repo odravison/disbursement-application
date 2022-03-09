@@ -31,9 +31,17 @@ public class DisbursementEntity extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "order_id")
     )
     private List<OrderEntity> ordersOnWeek;
+
+    @Column(name = "disbursed_amount")
     private BigDecimal disbursedAmount;
+
+    @Column(name = "fee")
     private BigDecimal fee;
+
+    @Column(name = "week_of_year")
     private Integer weekOfYear;
+
+    @Column(name = "year")
     private Integer year;
 
 }

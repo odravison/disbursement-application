@@ -3,6 +3,7 @@ package es.sequra.disbursementwebapplication.infrastructure.entities;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
 @Getter
@@ -10,7 +11,10 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public class UserEntity extends BaseEntity {
 
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "email")
     private String email;
 
 }
