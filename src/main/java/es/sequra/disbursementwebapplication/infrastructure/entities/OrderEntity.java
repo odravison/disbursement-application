@@ -1,4 +1,4 @@
-package es.sequra.disbursementwebapplication.domain.entities;
+package es.sequra.disbursementwebapplication.infrastructure.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,10 +16,10 @@ import java.time.Instant;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "order")
-@SQLDelete(sql = "UPDATE order SET deleted = true WHERE id = ?")
+@Entity(name = "order_entity")
+@SQLDelete(sql = "UPDATE order_entity SET deleted = true WHERE id = ?")
 @Where(clause = BaseEntity.WHERE_DELETED_CLAUSE)
-@SequenceGenerator(name="base_entity_gen", allocationSize = 1, sequenceName = "order_seq")
+@SequenceGenerator(name="base_entity_gen", allocationSize = 1, sequenceName = "order_entity_seq")
 public class OrderEntity extends BaseEntity {
 
     private Long orderId;

@@ -1,4 +1,4 @@
-package es.sequra.disbursementwebapplication.domain.entities;
+package es.sequra.disbursementwebapplication.infrastructure.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,9 +14,12 @@ import javax.persistence.SequenceGenerator;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "shopper")
-@SQLDelete(sql = "UPDATE shopper SET deleted = true WHERE id = ?")
+@Entity(name = "merchant")
+@SQLDelete(sql = "UPDATE merchant SET deleted = true WHERE id = ?")
 @Where(clause = BaseEntity.WHERE_DELETED_CLAUSE)
-@SequenceGenerator(name="base_entity_gen", allocationSize = 1, sequenceName = "shopper_seq")
-public class ShopperEntity extends UserEntity {
+@SequenceGenerator(name="base_entity_gen", allocationSize = 1, sequenceName = "merchant_seq")
+public class MerchantEntity extends UserEntity {
+
+    private String cif;
+
 }

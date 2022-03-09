@@ -1,4 +1,4 @@
-package es.sequra.disbursementwebapplication.domain.entities;
+package es.sequra.disbursementwebapplication.infrastructure.entities;
 
 import lombok.Getter;
 import lombok.Setter;
