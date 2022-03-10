@@ -15,4 +15,6 @@ public interface DisbursementRepository extends PagingAndSortingRepository<Disbu
                                                                       Pageable pageable);
 
     Page<DisbursementEntity> findAllByWeekOfYearAndYear(Integer weekNumberOfYear, Integer year, Pageable pageable);
+
+    Boolean existsByOrder_IdAndDeletedIsFalse(Long orderId);
 }
