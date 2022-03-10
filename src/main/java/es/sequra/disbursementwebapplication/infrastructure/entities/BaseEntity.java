@@ -22,10 +22,13 @@ public abstract class BaseEntity implements Serializable {
     private Long id;
 
     @CreatedDate
-    @Column(name = "created_at", updatable = false)
+    @Column(name = "created_at", updatable = false, nullable = false)
     private Instant createdAt;
 
     @LastModifiedDate
-    @Column(name = "last_modified_at")
+    @Column(name = "last_modified_at",  nullable = false)
     private Instant lastModifiedAt;
+
+    @Column(name = "deleted")
+    private boolean deleted;
 }

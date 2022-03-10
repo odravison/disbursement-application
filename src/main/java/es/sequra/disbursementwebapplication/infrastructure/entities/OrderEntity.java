@@ -1,5 +1,9 @@
 package es.sequra.disbursementwebapplication.infrastructure.entities;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import es.sequra.disbursementwebapplication.utils.InstantDeserializer;
+import es.sequra.disbursementwebapplication.utils.InstantSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,9 +25,6 @@ import java.time.Instant;
 @SequenceGenerator(name="base_entity_gen", allocationSize = 1, sequenceName = "order_entity_seq")
 public class OrderEntity extends BaseEntity {
 
-    @Column(name = "order_id")
-    private Long orderId;
-
     @ManyToOne
     @JoinColumn(name = "merchant_id")
     private MerchantEntity merchant;
@@ -35,6 +36,8 @@ public class OrderEntity extends BaseEntity {
     @Column(name = "amount")
     private BigDecimal amount;
 
+    @JsonDeserialize(using = InstantDeserializer.class)
+    @JsonSerialize(using = InstantSerializer.class)
     @Column(name = "completed_at")
     private Instant completedAt;
 
