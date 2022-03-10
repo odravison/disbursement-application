@@ -15,9 +15,16 @@ spring:
         hibernate:
           dialect: org.hibernate.dialect.PostgreSQLDialect
       #      Enabled only to generate table and database stuffs
-      ddl-auto: create
+      ddl-auto: none
   flyway:
     baseline-on-migrate: true
     out-of-order: true
     # disable when use hibernate only
-    enabled: false
+    enabled: true
+
+org:
+  jobrunr:
+    background-job-server:
+      enabled: true
+    dashboard:
+      enabled: true
