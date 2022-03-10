@@ -20,6 +20,8 @@
         <apache-commons.version>3.12.0</apache-commons.version>
         <hibernate-validator.version>7.0.3.Final</hibernate-validator.version>
         <flyway.version>8.5.2</flyway.version>
+        <json-simple.version>1.1.1</json-simple.version>
+        <jobrunr-spring.version>3.1.2</jobrunr-spring.version>
     </properties>
     <dependencies>
         <dependency>
@@ -57,6 +59,21 @@
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
             <version>${flyway.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>${json-simple.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.13.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jobrunr</groupId>
+            <artifactId>jobrunr-spring-boot-starter</artifactId>
+            <version>${jobrunr-spring.version}</version>
         </dependency>
 
 
