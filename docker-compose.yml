@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+
+  postgresql_service:
+    image: postgres:10
+    ports:
+      - ${DATABASE_PORT:-5432}
+    environment:
+      ## This environment is to create database automatically
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-sequrachallenge123}
+      POSTGRES_USER: ${DATABASE_USERNAME:-sequra}
+      POSTGRES_DB: 'disbursements'
+      ## -----------------------------------------------------
+      DATABASE_USERNAME: ${DATABASE_USERNAME:-sequra}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD:-sequrachallenge123}
+      DATABASE_PORT: ${DATABASE_PORT:-5432}
+
+  disbursements_service_webapp:
+    build: .
+    links:
+      - postgresql_service
+    ports:
+      - 9000:9000
+      - 8000:8000
+    environment:
+      DATABASE_USERNAME: ${DATABASE_USERNAME:-sequra}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD:-sequrachallenge123}
+      DATABASE_PORT: ${DATABASE_PORT:-5432}

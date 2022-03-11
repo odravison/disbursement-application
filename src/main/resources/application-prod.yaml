@@ -1,0 +1,11 @@
+spring:
+  jpa:
+    show-sql: false
+  datasource:
+    url: jdbc:postgresql://${DATABASE_HOST:postgresql_service}:${DATABASE_PORT:5432}/disbursements
+    username: ${DATABASE_USERNAME:sequra}
+    password: ${DATABASE_PASSWORD:sequrachallenge123}
+    driver-class-name: org.postgresql.Driver
+  flyway:
+    baseline-on-migrate: true
+    out-of-order: true
