@@ -52,6 +52,21 @@ PS: You can pass environment variables as well like `DATABASE_HOST=postgresql_se
 
 PS: You can pass environment variables as well, like `DATABASE_HOST=postgresql_service DATABASE_USERNAME=sequra DATABASE_PASSWORD=sequrachallenge123 DATABASE_PORT=5432 mvn spring-boot:run -Dspring-boot.run.profiles=prod`
 
+### Strategy planned, but not executed
+
+This system was planned to be built in three part at least:
+1. **Domain module**: This module would be able to hold all business logic, validations rules, business models,
+   required attributes, would be able to decide if the entity must be persisted or not, in general based on business rules
+   and validations;
+2. **Infrastructure Module**: This module would be able to do everything that domain-module suppose to validate.
+   This module would contain the **HOW TO DO** what, the ways to do such things, as connect to a database, communicate
+   with a external API, how to persiste an object;
+3. **Web-application Module**: Basically this module could be the bridge between user and system by delivering
+   a WEB UI (such a REST API, html pages, CLI, etc.). This module should use all above modules to reach his objective.
+
+Time wasn't enough to do all that I wanted for.
+
+
 
 
 
