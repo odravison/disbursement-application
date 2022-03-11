@@ -52,6 +52,22 @@ PS: You can pass environment variables as well like `DATABASE_HOST=postgresql_se
 
 PS: You can pass environment variables as well, like `DATABASE_HOST=postgresql_service DATABASE_USERNAME=sequra DATABASE_PASSWORD=sequrachallenge123 DATABASE_PORT=5432 mvn spring-boot:run -Dspring-boot.run.profiles=prod`
 
+### Using application
+Endpoints availables:
+
+GET https://localhost:9000/disbursements - With this endpoint you can get all disbursement processed;
+
+you can import this on postman or execute in terminal:
+`curl --location --request GET 'http://localhost:9000/disbursement?dateOfYear=2018-01-14&merchantCIF=B611111112'`
+
+OPEN in browser: http://localhost:8000/dashboard - You'll see Jobrnr dashboard. 
+
+Jobrnr was the solution used to schedule disbursement calculations; 
+This is a clean solution, it guarantees execute job only once and only one per time.
+
+PS: In order to see disbursements processed, you must wait 5 minutes to call endpoint, 
+or you need to trigger the job on Jobrnr's dashboard.
+
 ### Strategy planned, but not executed
 
 This system was planned to be built in three part at least:
