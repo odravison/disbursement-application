@@ -42,9 +42,6 @@ public class DisbursementService {
     @Autowired
     private ConfigurationFeeRepository configurationFeeRepository;
 
-    @Autowired
-    private JobScheduler jobScheduler;
-
 
     public List<DisbursementResponseDTO> getDisbursements(GetDisbursementsRequestDTO requestDisbursementDTO) {
         Page<DisbursementEntity> result;
@@ -83,7 +80,11 @@ public class DisbursementService {
     public void doDisbursementCalculations() {
         List<DisbursementEntity> disbursements = new ArrayList<>();
         // If today is monday, minus 7 will be previous monday
-        Integer daysBefore = 7;
+        Integer daysBefore = 7; // This cold be a parameter got from DB (configuration)
+
+        /*
+            Need to use a valid date, used by our dataset values
+         */
 //        LocalDate today = LocalDate.now();
         LocalDate today = LocalDate.now().withYear(2018).withMonth(1).withDayOfMonth(15);
         LocalDate todayMinus7days = today.minusDays(daysBefore);
@@ -139,9 +140,11 @@ public class DisbursementService {
                     this.disbursementRepository.save(disbursement);
                 });
                 if (orderEntities.hasNext() && !orderEntities.isLast()) {
-                    pageRequest = orderEntities.nextPageable();
+                    pageRequest = orderEntities.nextOrLastPageable();
                     orderEntities = this.orderRepository
                             .findByCompletedAtNotNullAndCompletedAtIsBetween(startDate, endDate, pageRequest);
+                } else {
+                    break;
                 }
             }
 

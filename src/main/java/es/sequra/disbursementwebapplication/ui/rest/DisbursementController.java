@@ -5,7 +5,10 @@ import es.sequra.disbursementwebapplication.ui.presentation.DisbursementResponse
 import es.sequra.disbursementwebapplication.ui.presentation.DisbursementsResponseDTO;
 import es.sequra.disbursementwebapplication.ui.presentation.GetDisbursementsRequestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -15,6 +18,8 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RestController
 @RequestMapping("disbursement")
 public class DisbursementController {
+
+    public static final String GET_DISBURSEMENT_URL = "/disbursement";
 
     @Autowired
     private DisbursementService disbursementService;

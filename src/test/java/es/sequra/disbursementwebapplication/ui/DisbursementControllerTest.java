@@ -2,32 +2,46 @@ package es.sequra.disbursementwebapplication.ui;
 
 import es.sequra.disbursementwebapplication.ui.presentation.DisbursementsResponseDTO;
 import es.sequra.disbursementwebapplication.ui.presentation.GetDisbursementsRequestDTO;
-import es.sequra.disbursementwebapplication.ui.rest.DisbursementController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;
 import java.time.temporal.IsoFields;
 
+import static es.sequra.disbursementwebapplication.ui.rest.DisbursementController.GET_DISBURSEMENT_URL;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
+@SpringBootTest(
+        webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT
+)
 public class DisbursementControllerTest {
 
     @Autowired
-    private DisbursementController api;
+    protected TestRestTemplate restTemplate;
 
     // 1. Get the disbursement for a given merchant on a given week
     @Test
     public void getDisbursementsForAGivenMerchantOnAGivenWeek() {
 
-        String merchantCIFSearched = "B611111110";
-        LocalDate searchedDate = LocalDate.parse("2017-08-01");
+        String merchantCIFSearched = "B611111112";
+        LocalDate searchedDate = LocalDate.parse("2018-01-14");
         GetDisbursementsRequestDTO requestDisbursementDTO = new GetDisbursementsRequestDTO();
         requestDisbursementDTO.setDateOfYear(searchedDate);
         requestDisbursementDTO.setMerchantCIF(merchantCIFSearched);
 
-        // Calling the domain api
-        DisbursementsResponseDTO disbursementsResponseDTO = this.api.getDisbursements(requestDisbursementDTO);
+        // Calling api
+        ResponseEntity<DisbursementsResponseDTO> response = restTemplate.exchange(
+                GET_DISBURSEMENT_URL,
+                HttpMethod.POST,
+                new HttpEntity<>(requestDisbursementDTO),
+                DisbursementsResponseDTO.class);
+
+        DisbursementsResponseDTO disbursementsResponseDTO = response.getBody();
 
         int weekSearched = searchedDate.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR);
         int yearSearched = searchedDate.get(IsoFields.WEEK_BASED_YEAR);
@@ -64,8 +78,14 @@ public class DisbursementControllerTest {
         requestDisbursementDTO.setDateOfYear(searchedDate);
         requestDisbursementDTO.setMerchantCIF("");
 
-        // Calling the domain api
-        DisbursementsResponseDTO disbursementsResponseDTO = this.api.getDisbursements(requestDisbursementDTO);
+        // Calling api
+        ResponseEntity<DisbursementsResponseDTO> response = restTemplate.exchange(
+                GET_DISBURSEMENT_URL,
+                HttpMethod.POST,
+                new HttpEntity<>(requestDisbursementDTO),
+                DisbursementsResponseDTO.class);
+
+        DisbursementsResponseDTO disbursementsResponseDTO = response.getBody();
 
         int weekSearched = searchedDate.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR);
         int yearSearched = searchedDate.get(IsoFields.WEEK_BASED_YEAR);
